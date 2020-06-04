@@ -1,0 +1,463 @@
+
+{% extends "layouts/base.html" %}
+
+{% block title %} Forms {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+<title>Google trends!</title>
+<!-- Chart.js and moment needed for time axis of Chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
+
+<div class="yoo-height-b30 yoo-height-lg-b30"></div>
+<div class="container">
+    <div class="yoo-uikits-heading">
+        <h2 class="yoo-uikits-title">Google trends</h2>
+    </div>
+</div>
+
+
+<div class="yoo-height-b30 yoo-height-lg-b30"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="yoo-height-b30 yoo-height-lg-b30"></div>
+            <div class="yoo-card yoo-style1">
+                <div class="yoo-card-heading">
+                    <div class="yoo-card-heading-left">
+                        <h2 class="yoo-card-title">Input keywords</h2>
+                    </div>
+                </div>
+                <div class="yoo-card-body">
+                    <div class="yoo-padd-lr-20">
+                        <div class="yoo-height-b20 yoo-height-lg-b20"></div>
+                         <form action="" method="post">
+                             {{ form.hidden_tag() }}
+                             <label class="col-sm-2 col-form-label">Keywords</label>
+                             <div class="row">
+                                 <div class="col">
+                                     <div class="form-group level-up">
+                                         <label for="keyword1">Keyword 1</label>
+                                         <input type="text" class="form-control" name="keyword1" id="keyword1">
+                                     </div>
+                                 </div>
+                                 <div class="col">
+                                     <div class="form-group level-up">
+                                         <label for="keyword2">Keyword 2</label>
+                                         <input type="text" class="form-control" name="keyword2" id="keyword2">
+                                     </div>
+                                 </div>
+                                 <div class="col">
+                                     <div class="form-group level-up">
+                                         <label for="keyword3">Keyword 3</label>
+                                         <input type="text" class="form-control" name="keyword3" id="keyword3">
+                                     </div>
+                                 </div>
+                                 <div class="col">
+                                     <div class="form-group level-up">
+                                         <label for="keyword4">Keyword 4</label>
+                                         <input type="text" class="form-control" name="keyword4" id="keyword4">
+                                     </div>
+                                 </div>
+                                 <div class="col">
+                                     <div class="form-group level-up">
+                                         <label for="keyword5">Keyword 5</label>
+                                         <input type="text" class="form-control" name="keyword5" id="keyword5">
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="row">
+                                 <div class="col">
+                                     <div class="form-group level-up">
+                                         <label for="keyword6">Keyword 6</label>
+                                         <input type="text" class="form-control" name="keyword6" id="keyword6">
+                                     </div>
+                                 </div>
+                                 <div class="col">
+                                     <div class="form-group level-up">
+                                         <label for="keyword7">Keyword 7</label>
+                                         <input type="text" class="form-control" name="keyword7" id="keyword7">
+                                     </div>
+                                 </div>
+                                 <div class="col">
+                                     <div class="form-group level-up">
+                                         <label for="keyword8">Keyword 8</label>
+                                         <input type="text" class="form-control" name="keyword8" id="keyword8">
+                                     </div>
+                                 </div>
+                                 <div class="col">
+                                     <div class="form-group level-up">
+                                         <label for="keyword9">Keyword 9</label>
+                                         <input type="text" class="form-control" name="keyword9" id="keyword9">
+                                     </div>
+                                 </div>
+                                 <div class="col">
+                                     <div class="form-group level-up">
+                                         <label for="keyword10">Keyword 10</label>
+                                         <input type="text" class="form-control" name="keyword10" id="keyword10">
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="form-group row">
+                                 <label for="Category" class="col-sm-2 col-form-label">Category</label>
+                                 <div class="col-sm-10">
+                                     <div class="level-up">
+                                         <label for="Category">Category</label>
+                                         <input type="Category" class="form-control" name="Category" id="Category">
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="form-group row">
+                                 <label for="Location" class="col-sm-2 col-form-label">Location</label>
+                                 <div class="col-sm-10">
+                                     <div class="level-up">
+                                         <label for="Location">Location</label>
+                                         <input type="Location" class="form-control" name="Location" id="Location">
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="form-group row">
+                                 <label for="fromdate" class="col-sm-2 col-form-label">From date</label>
+                                 <div class="col-sm-10">
+                                     <div class="level-up">
+                                         <label for="fromdate"></label>
+                                         <input type="date" class="form-control" name="fromdate" id="fromdate" placeholder="YYYY-DD-MM">
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="form-group row">
+                                 <label for="todate" class="col-sm-2 col-form-label">To date</label>
+                                 <div class="col-sm-10">
+                                     <div class="level-up">
+                                         <label for="todate"></label>
+                                         <input type="date" class="form-control" name="todate" id="todate" placeholder="YYYY-DD-MM">
+                                     </div>
+                                 </div>
+                             </div>
+                             <br>
+                             <div class="text-center">
+                                 <button type="submit" class="btn btn-success btn-lg">Submit</button>
+                                 <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+                             </div>
+                             <div class="form-group row"></div>
+                         </form>
+                        <div class="yoo-height-b5 yoo-height-lg-b5"></div>
+                        <br>
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+
+                        {% for message in messages %}
+                            {% if "Error" not in message[1]: %}
+                                <div class="alert alert-info text-center">
+                                <strong>Success! </strong> {{ message[1] }}
+                                </div>
+                            {% endif %}
+
+                            {% if "Error" in message[1]: %}
+                                <div class="alert alert-warning text-center">
+                                {{ message[1] }}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="yoo-height-b30 yoo-height-lg-b30"></div>
+            <div class="yoo-card yoo-style1">
+                <div class="yoo-card-heading">
+                    <div class="yoo-card-heading-left">
+                        <h2 class="yoo-card-title">Interest over time</h2>
+                    </div>
+                </div>
+                <div class="yoo-card-body">
+                    <div class="yoo-padd-lr-20">
+                        <div class="yoo-height-b20 yoo-height-lg-b20"></div>
+                        <h3 class="text-center">Interest in past 12 months</h3>
+                        <div>
+                        <!-- <div style="width:75%; margin: 0 auto;">-->
+                            <!-- bar chart canvas element -->
+                            <canvas id="chart"></canvas>
+                        </div>
+                        <br>
+                            <h3 class="text-center">Interest in past 3 months</h3>
+                        <div>
+                        <!-- <div style="width:75%; margin: 0 auto;">-->
+                            <!-- bar chart canvas element -->
+                            <canvas id="chart_7d"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="yoo-height-b30 yoo-height-lg-b30"></div>
+            <div class="yoo-card yoo-style1">
+                <div class="yoo-card-heading">
+                    <div class="yoo-card-heading-left">
+                        <h2 class="yoo-card-title"><span class="yoo-card-title-icon yoo-indigo-bg"><ion-icon name="cloudy"></ion-icon></span>ANALYTICS</h2>
+                    </div>
+                    <div class="yoo-card-heading-right">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#AreaCharts">Area Charts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#BarChart">Bar Chart</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="yoo-card-body">
+                    <div class="yoo-padd-lr-20">
+                        <div class="yoo-height-b20 yoo-height-lg-b20"></div>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="AreaCharts">
+                                <div id="yooChart4"></div>
+                                <div class="yoo-height-b5 yoo-height-lg-b5"></div>
+                            </div>
+                            <div class="tab-pane fade" id="BarChart">
+                                <div id="yooChart1-4"></div>
+                                <div class="yoo-height-b20 yoo-height-lg-b20"></div>
+                            </div>
+                        </div>
+                        <div class="yoo-height-b0 yoo-height-lg-b0"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Specific Page JS goes HERE  -->
+
+<script>
+var ctx = document.getElementById('chart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: [{% for label in time_24h %}
+                    "{{label}}",
+                    {% endfor %}],
+        datasets: [{
+            label: "{{keyword1}}",
+            fill: false,
+            pointRadius: 0,
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [{% for value in food1_24h %}
+                        {{value}},
+                        {% endfor %}],
+        }, {
+            label: "{{keyword2}}",
+            fill: false,
+            pointRadius: 0,
+            backgroundColor: 'rgb(54, 162, 235)',
+            borderColor: 'rgb(54, 162, 235)',
+            data: [{% for value in food2_24h %}
+                        {{value}},
+                        {% endfor %}],
+        },
+        {
+            label: "{{keyword3}}",
+            fill: false,
+            pointRadius: 0,
+            backgroundColor: 'rgb(54, 162, 135)',
+            borderColor: 'rgb(54, 162, 135)',
+            data: [{% for value in food3_24h %}
+                        {{value}},
+                        {% endfor %}],
+        },
+        {
+            label: "{{keyword4}}",
+            fill: false,
+            pointRadius: 0,
+            backgroundColor: 'rgb(95, 75, 132)',
+            borderColor: 'rgb(95, 75, 132)',
+            data: [{% for value in food4_24h %}
+                        {{value}},
+                        {% endfor %}],
+        }, {
+            label: "{{keyword5}}",
+            fill: false,
+            pointRadius: 0,
+            backgroundColor: 'rgb(154, 182, 95)',
+            borderColor: 'rgb(154, 182, 95)',
+            data: [{% for value in food5_24h %}
+                        {{value}},
+                        {% endfor %}],
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+                responsive: true,
+                title:{
+                    display:true,
+                    text:'{{keyword1}} vs. {{keyword2}} vs. {{keyword3}} vs. {{keyword4}} vs. {{keyword5}}'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        type: 'time',
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Time'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Interest'
+                        }
+                    }]
+                }
+            }
+});
+</script>
+
+
+
+<script>
+var ctx = document.getElementById('chart_7d').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: [{% for label in time_7d %}
+                    "{{label}}",
+                    {% endfor %}],
+        datasets: [{
+            label: "{{keyword1}}",
+            fill: false,
+            pointRadius: 0,
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [{% for value in food1_7d %}
+                        {{value}},
+                        {% endfor %}],
+        }, {
+            label: "{{keyword2}}",
+            fill: false,
+            pointRadius: 0,
+            backgroundColor: 'rgb(54, 162, 235)',
+            borderColor: 'rgb(54, 162, 235)',
+            data: [{% for value in food2_7d %}
+                        {{value}},
+                        {% endfor %}],
+        },
+        {
+            label: "{{keyword3}}",
+            fill: false,
+            pointRadius: 0,
+            backgroundColor: 'rgb(54, 162, 135)',
+            borderColor: 'rgb(54, 162, 135)',
+            data: [{% for value in food3_7d %}
+                        {{value}},
+                        {% endfor %}],
+        },
+        {
+            label: "{{keyword4}}",
+            fill: false,
+            pointRadius: 0,
+            backgroundColor: 'rgb(95, 75, 132)',
+            borderColor: 'rgb(95, 75, 132)',
+            data: [{% for value in food4_7d %}
+                        {{value}},
+                        {% endfor %}],
+        },
+        {
+            label: "{{keyword5}}",
+            fill: false,
+            pointRadius: 0,
+            backgroundColor: 'rgb(154, 182, 95)',
+            borderColor: 'rgb(154, 182, 95)',
+            data: [{% for value in food5_7d %}
+                        {{value}},
+                        {% endfor %}],
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+                responsive: true,
+                title:{
+                    display:true,
+                    text:'{{keyword1}} vs. {{keyword2}} vs. {{keyword3}} vs. {{keyword4}} vs. {{keyword5}}'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        type: 'time',
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Time'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Interest'
+                        }
+                    }]
+                }
+            }
+});
+</script>
+
+
+<br>
+
+</div><!--end class="container"-->
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script src="/static/assets/js/apexcharts.min.js"></script>
+<script src="/static/assets/js/apexcharts.initialize.js"></script>
+<script src="/static/assets/js/svg-maps/jquery.vmap.min.js"></script>
+<script src="/static/assets/js/svg-maps/jquery.vmap.usa.js"></script>
+<script src="/static/assets/js/svg-maps/jquery.vmap.main.js"></script>
+<!-- Chart.js and moment needed for time axis of Chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
+{% endblock javascripts %}
+
+<!--</body>
+</html>-->
